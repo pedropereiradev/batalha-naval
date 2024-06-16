@@ -10,7 +10,7 @@
 3. Colocar aleatoriamente as embarcações no tabuleiro
 4. O jogo começa com 10 munições
 5. Cada tiro perde 1 munição
-6. Cada acerto valo +2 munições
+6. Cada acerto vale +2 munições
 7. Cada objetivo afundado vale +3
 8. Navios serão posicionados na horizontal e vertical
 9. Validar possibilidade da posição random para cada embarcação

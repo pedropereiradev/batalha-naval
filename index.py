@@ -1,8 +1,5 @@
 import random
 
-ranking = []
-# TODO - Ler o ranking do arquivo ranking.txt
-
 embarcacoes = [
     {
       "nome": "Porta-aviões",
@@ -109,21 +106,46 @@ def salvar_ranking():
   with open('ranking.txt', 'a') as file:
     file.write(f"{usuario['nome']},{usuario['pontos']}\n")
 
-def main():
+def jogar():
     ler_usuario()
     posicionar_embarcacoes_random()
 
     while municoes > 0:
-        imprimir_tabuleiro()
-        atirar()
+      imprimir_tabuleiro()
+      atirar()
 
     print(f"Você fez {usuario['pontos']} pontos")
     salvar_ranking()
     imprimir_posicoes()
 
-# TODO - Salvar o ranking no arquivo ranking.txt
-# TODO - Mostrar o ranking no final do jogo
-# TODO - Criar sistema de pontuação
-# TODO - Validar quando o usuário acertar todas as embarcações
+def titulo(texto):
+  print()
+  print(texto)
+  print("="*40)
 
-main()
+def ranking():
+  titulo('Ranking Batalha naval')
+  with open('ranking.txt', 'r') as file:
+    ranking = file.readlines()
+    ranking = [linha.strip() for linha in ranking]
+    ranking = [linha.split(',') for linha in ranking]
+    ranking = sorted(ranking, key=lambda linha: int(linha[1]), reverse=True)
+    for i, linha in enumerate(ranking):
+      print(f"{i + 1} - {linha[0]}: {linha[1]} pontos")
+
+while True:
+  titulo('Batalha Naval')
+  print('1 - Jogar')
+  print('2 - Mostrar ranking')
+  print('0 - sair')
+
+  opcao = input('Informe a opcao desejada: ')
+
+  if opcao == '1':
+    jogar()
+  elif opcao == '2':
+    ranking()
+  elif opcao == '0':
+     break
+  else:
+     print('Opcao invalida')
